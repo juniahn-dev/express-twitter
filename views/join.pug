@@ -1,0 +1,25 @@
+doctype html
+html(lang='en')
+  head
+    title Join
+    script(type='text/javascript')
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css')
+  body
+    .modal-dialog
+      h1 Sign Up
+      .modal-content
+        // Modal Body
+        .modal-body
+          form(role='form' method='POST' action='/auth/sign_up_account')
+            div.form-group
+              label(for='email') Email:
+              input#email.form-control(type='email', placeholder='name@email.com', name='email')
+            div.form-group
+              label(for='password') Password:
+              input#password.form-control(type='password', placeholder='password', name='password')
+            div.form-group
+              label(for='name') Nickname:
+              input#name.form-control(type='text', placeholder='nickname', name='name')
+            button.btn.btn-primary(type="submit") Create Account
+            button.btn.btn-default(type="button", data-dismiss="modal")
+              a(href="javascript:location.href='/auth/login'") Home

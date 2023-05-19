@@ -1,0 +1,21 @@
+doctype html
+html(lang='en')
+  head
+    title Login
+    script(type='text/javascript').
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css')
+  body
+    .modal-dialog
+      h1 Login
+      .modal-content
+        .modal-body
+          form(role='form' method='POST' action='/auth/login_process')
+            div.form-group
+              label(for='email') Email:
+              input#email.form-control(type='email', placeholder='name@email.com', name='email')
+            div.form-group
+              label(for='password') Password:
+              input#password.form-control(type='password', placeholder='password', name='password')
+            button.btn.btn-primary(type="submit") Sign In
+            a.btn.btn-secondary(href="javascript:location.href='/auth/join'") Sign Up
+            div= state

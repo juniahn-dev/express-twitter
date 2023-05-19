@@ -1,0 +1,32 @@
+doctype html
+html(lang='en')
+  head
+    title Detail
+    script(type='text/javascript').
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css')
+  body
+    .modal-dialog
+      h1 Detail
+      form(role='form' method='GET' action='/auth/logout')
+        button.btn.btn-primary(type="submit") Logout
+      button.btn.btn-default(type="button", data-dismiss="modal")
+        a(href="javascript:location.href='/list'") List
+      .modal-content
+        .modal-body
+          if user_state === 'SLEEP'
+            form(role='form' method='GET' action='/auth/update_active')
+              button.btn.btn-primary(type="submit") UPDATE ACTIVE
+          else
+            div
+              span
+                b #{follow.following}&nbsp;
+                span Following&nbsp;&nbsp;&nbsp;
+              span
+                b #{follow.follower}&nbsp;
+                span Follower
+            br
+            div Change Name
+              form(role='form' method='POST' action='/auth/edit_name')
+                div.form-group
+                  input#content.form-control(type='text', placeholder=user_info.name, name='name')
+                button.btn.btn-primary(type="submit") Edit

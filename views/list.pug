@@ -1,0 +1,47 @@
+doctype html
+html(lang='en')
+  head
+    title List
+    script(type='text/javascript')
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css')
+  body
+    .modal-dialog
+      h1 List
+      div= user_state
+      form(role='form' method='GET' action='/auth/logout')
+        button.btn.btn-primary(type="submit") Logout
+      button.btn.btn-default(type="button", data-dismiss="modal")
+          a(href="javascript:location.href='/detail'") Detail
+      .modal-content
+        .modal-body
+          form(role='form' method='POST' action='/list/make_tweet')
+            div.form-group
+              input#content.form-control(type='content', placeholder="What's happening?", name='content')
+            button.btn.btn-primary(type="submit") Tweet
+      each row in rows
+        .modal-content
+          .modal-body
+            table.table.table-striped
+              thead
+                tr
+                  th Content
+                  th Date
+                  th
+              tbody
+                tr
+                  td= row.content
+                  td= row.create_at
+                  td
+                    if user_id === row.user_id
+                      form(role='form' method='POST' action='/list/delete_tweet')
+                        input(type='hidden' value=row.id name='id')
+                        button.form-control(type="submit") Delete
+            div.form-check
+              form(role='form' method='POST' action='/list/like_tweet')
+                input(type='hidden' value=row.id name='id')
+                input(type='hidden' value=row.is_like name='like')
+                button.form-control(type='submit')= row.is_like === 1 ? '👍✅' : '👎❌'
+              form(role='form' method='POST' action='/list/retweet_tweet')
+                input(type='hidden' value=row.id name='id')
+                input(type='hidden' value=row.is_retweet name='retweet')
+                button.form-control(type='submit')= row.is_retweet === 1 ? '💞✅' : '💤❌'
